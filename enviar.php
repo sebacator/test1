@@ -21,6 +21,7 @@ $contenido = isset($_POST['contenido']) ? (int) $_POST['contenido'] : 0;
 $anio = isset($_POST['anio']) ? (int) $_POST['anio'] : 0;
 $terminos = isset($_POST['terminos']) ? (int) $_POST['terminos'] : 0;
 $nombre = isset($_POST['nombre']) ? Filtro($_POST['nombre']) : '';
+$rut = isset($_POST['rut']) ? Filtro($_POST['rut']) : '';
 $correo = isset($_POST['correo']) ? Filtro($_POST['correo']) : '';
 $contrasena = isset($_POST['contrasena']) ? Filtro($_POST['contrasena']) : '';
 $foto = isset($_FILES['foto']) ? $_FILES['foto'] : '';
@@ -52,6 +53,10 @@ if($enviado == 1 && $contenido == 1) {
   exit;
 } else if(empty($nombre)) {
   $error = 'Por favor, ingrese su nombre.';
+} else if(empty($rut)) {
+  $error = 'Por favor, ingrese su rut.';
+} else if(!(is_numeric($rut))) {
+  $error = 'Por favor solo ingrese numeros en el rut.';
 } else if(empty($correo)) {
   $error = 'Por favor, ingrese su correo electrónico.';
 } else if(empty($contrasena)) {
@@ -83,7 +88,7 @@ if(!empty($error)) {
 // Vista de éxito
 } else {
   // Subir imagen
-  move_uploaded_file($foto['tmp_name'], $foto_subida);
+  //move_uploaded_file($foto['tmp_name'], $foto_subida);
 ?>
   <h3>¡Formulario enviado satisfactoriamente!</h3>
   <div class="panel panel-default">
@@ -91,7 +96,7 @@ if(!empty($error)) {
       <h3 class="panel-title">Datos enviados</h3>
     </div>
     <div class="panel-body">
-      <p>Bienvenido(a) <b><?php echo $nombre; ?></b>,</p>
+      <p>Bienvenido(a) <b><?php echo $nombre; ?></b> su rut es: <?php echo $rut; ?></b>,</p>
       <p>Tu correo electrónico es <b><?php echo $correo; ?></b>, y tu contraseña tiene <b><?php echo strlen($contrasena); ?></b> caracteres.</p>
       <p>
         Tu foto de perfil es: <br />
@@ -107,10 +112,10 @@ if(!empty($error)) {
         Tu año de ingreso es: <b><?php echo $anio; ?></b>
       </p>
       <p>
-        Tu sexo es: <b><?php echo ($sexo == 'm' ? 'Masculino' : 'Femenino'); ?></b>
+        Tu sexo es: <b><?php echo ($sexo == 'm' ? 'Masculino' : ($sexo == 'f' ? 'femenino' : 'Indefinido')); ?></b>
       </p>
       <p>
-        Tu <b><?php echo ($terminos == 1 ? 'sí' : 'no'); ?></b> aceptaste los términos y condiciones.</b>
+        Tu <b><?php echo ($terminos == 1 ? 'sí' : 'no'); ?></b> aceptaste los términos y condiciones.</b> y <b><?php echo ($terminos == 1 ? 'sí' : 'no'); ?></b> aceptaste recibir correo basura de esta empresa.</b>
       </p>
     </div>
     <div class="panel-footer">

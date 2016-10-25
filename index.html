@@ -34,6 +34,11 @@ https://github.com/MiguelGonzalezAravena/FormularioPHP
           <b>Nombre</b>
           <input type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre">
         </div>
+        <div class="form-group">
+        <!-- RUT -->
+          <b>Rut</b>
+          <input type="text" class="form-control" name="rut" placeholder="Ingrese su rut">
+        </div>
         <!-- Email -->
         <div class="form-group">
           <b>Correo electrónico</b>
@@ -59,6 +64,7 @@ https://github.com/MiguelGonzalezAravena/FormularioPHP
           <b>Año de ingreso</b><br />
           <select name="anio" class="form-control">
             <option value="">Seleccione un año</option>
+            <option value="1980">1980</option>
             <option value="2009">2009</option>
             <option value="2010">2010</option>
             <option value="2011">2011</option>
@@ -72,11 +78,15 @@ https://github.com/MiguelGonzalezAravena/FormularioPHP
           <b>Sexo</b><br />
           <input type="radio" name="sexo" value="m"> Masculino<br />
           <input type="radio" name="sexo" value="f"> Femenino<br />
+          <input type="radio" name="sexo" value="i"> Indefinido<br />
         </div>
         <!-- Checkbox -->
         <div class="form-group">
           <b>Términos y condiciones</b><br />
           <input type="checkbox" name="terminos" value="1"> Acepto y he leído los términos y condiciones.<br />
+        </div>
+        <div class="form-group">
+          <input type="checkbox" name="terminos" value="1"> Deseo recibir correos basura de esta empresa.<br />
         </div>
         <div class="form-group">
           <input type="checkbox" name="contenido" value="1"> <b>¿Ver la estructura del contenido que se envió?</b>
